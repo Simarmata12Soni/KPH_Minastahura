@@ -110,14 +110,16 @@ td {
   text-align: left;
 }
 
-/* tr:nth-child(even) td {
+ tr:nth-child(even) td {
   background-color: rgb(219, 195, 195);
 }
 
 tr:nth-child(odd) td {
   background-color: rgb(255, 255, 255);
-} */
-.info {
+} 
+
+
+/*.info {
   padding: 6px 8px;
   font: 14px/16px Arial, Helvetica, sans-serif;
   background: white;
@@ -142,3 +144,4 @@ tr:nth-child(odd) td {
   margin-right: 8px;
   opacity: 0.7;
 }
+*/
