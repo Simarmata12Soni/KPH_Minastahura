@@ -154,13 +154,13 @@ var updateSidebar = function(marker) {
       for (var i = 1; i <= 5; i++) {
         var idx = 'Image' + i;
 
-        if (d[idx]) {
+        if (d[idx]) {x
 
-          // var source = "<em class='normal'>" + d[idx + 'Source'] + '</em>';
+          var source = "<em class='normal'>" + d[idx + 'Source'] + '</em>';
 
-          // if (source && d[idx + 'SourceLink']) {
-          //   source = "<a href='" + d[idx + 'SourceLink'] + "' target='_blank'>" + source + "</a>";
-          // }
+          if (source && d[idx + 'SourceLink']) {
+            source = "<a href='" + d[idx + 'SourceLink'] + "' target='_blank'>" + source + "</a>";
+          }
 
           var a = $('<a/>', {
             href: d[idx],
@@ -251,7 +251,7 @@ var addMarkers = function(data) {
     groups[g].addTo(map);
   }
   
-  L.control.layers({}, groups, {collapsed: true, position: 'bottomright'}).addTo(map);
+  L.control.layers({}, groups, {collapsed: true, position: 'topright'}).addTo(map);
   //$('.leaflet-control-layers-overlays').prepend('<h3 class="mt0 mb1 f5 black-30">Legend</h3>');
 
   // If name in hash, activate it
@@ -376,75 +376,75 @@ var initMap = function() {
     }
   }
 //style when hovered
-function highlightFeature(e) {
-   var layer = e.target;
+// function highlightFeature(e) {
+//    var layer = e.target;
 
-   layer.setStyle({
-      opacity: 1,
-      color: 'rgba(35,35,35,1.0)',
-      dashArray: '',
-      lineCap: 'butt',
-      lineJoin: 'miter',
-      weight: 3.0,
-      fill: true,
-      fillOpacity: 1,
-      fillColor: 'rgba(135,116,158,0.3)',
-      interactive: true,
-   });
+//    layer.setStyle({
+//       opacity: 1,
+//       color: 'rgba(35,35,35,1.0)',
+//       dashArray: '',
+//       lineCap: 'butt',
+//       lineJoin: 'miter',
+//       weight: 3.0,
+//       fill: true,
+//       fillOpacity: 1,
+//       fillColor: 'rgba(135,116,158,0.3)',
+//       interactive: true,
+//    });
 
-   if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-      layer.bringToFront();
-   }
-   info.update(layer.feature.properties); 
-}
-//reset hover state
-function resetHighlight(e) {
-   layer_BatasKawasan.resetStyle(e.target);
-   info.update(); 
-}
-//zoom while clicking
-function zoomToFeature(e) {
-   map.fitBounds(e.target.getBounds());
-}
-// event listener package
-function onEachFeature(feature, layer) {
-   layer.on({
-      mouseover: highlightFeature,
-      mouseout: resetHighlight,
-      click: zoomToFeature
-   });
-}
+//    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+//       layer.bringToFront();
+//    }
+//    info.update(layer.feature.properties); 
+// }
+// //reset hover state
+// function resetHighlight(e) {
+//    layer_BatasKawasan.resetStyle(e.target);
+//    info.update(); 
+// }
+// //zoom while clicking
+// function zoomToFeature(e) {
+//    map.fitBounds(e.target.getBounds());
+// }
+// // event listener package
+// function onEachFeature(feature, layer) {
+//    layer.on({
+//       mouseover: highlightFeature,
+//       mouseout: resetHighlight,
+//       click: zoomToFeature
+//    });
+// }
 
   map.createPane('pane_PohonAdopsiMinastahura_4');
   map.getPane('pane_PohonAdopsiMinastahura_4').style.zIndex = 1;
   map.getPane('pane_PohonAdopsiMinastahura_4').style['mix-blend-mode'] = 'normal';
 
-  layer_BatasKawasan = L.geoJson(json_BatasKawasanTahuraSultanSyarifQasim_3,{
+  layer_BatasKawasan = L.geoJson(bataskawasanminastahura,{
     attribution: '',
     interactive: true,
-    dataVar: 'json_BatasKawasanTahuraSultanSyarifQasim_3',
-    layerName: 'layer_BatasKawasanTahuraSultanSyarifQasim_3',
+    dataVar: 'bataskawasanminastahura',
+    layerName: 'bataskawasanminastahura',
     style: style_bataskawasan,
-    onEachFeature: onEachFeature,
+    //onEachFeature: onEachFeature,
     //pane: 'pane_PohonAdopsiMinastahura_4'
   });
   map.addLayer(layer_BatasKawasan);
 
-//Get "kabupat" from Geojsonfile for area information when hovered
-var info = L.control();
-info.onAdd = function (map) {
-   this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
-   this.update();
-   return this._div;
-};
+// //Get "kabupat" from Geojsonfile for area information when hovered
+// var info = L.control();
+// info.onAdd = function (map) {
+//    this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+//    this.update();
+//    return this._div;
+// };
 
-// method that we will use to update the control based on feature properties passed
-info.update = function (props) {
-   this._div.innerHTML = '<h4>Daerah</h4>' + (props ?
-      props.kabupat
-      : '');
-};
-info.addTo(map);
+// // method that we will use to update the control based on feature properties passed
+// info.update = function (props) {
+//    this._div.innerHTML = '<h4>Daerah</h4>' + (props ?
+//       props.kabupat
+//       : '');
+// };
+// info.addTo(map);
 
   //group basemaps
   basemaps= {
